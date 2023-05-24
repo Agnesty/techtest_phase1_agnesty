@@ -9,8 +9,10 @@ import '../controllers/menu_ctr.dart';
 class HomeScreen extends StatelessWidget {
   final ApiService apiService = Get.put(ApiService());
 
+// Memuat data saat pertama kali dibangun
   HomeScreen() {
-    apiService.fetchData(); // Memuat data saat pertama kali dibangun
+    apiService.requestPermissions();
+    apiService.fetchData(); 
   }
 
   @override
@@ -64,7 +66,7 @@ class HomeScreen extends StatelessWidget {
           );
         } else {
           List<DataModel> activeProducts =
-              apiService.filterActiveProducts(apiService.data);
+              apiService.filterActiveProducts();
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: GridView.builder(
@@ -86,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: CachedNetworkImage(
-                              imageUrl: apiService.data[index].gambar!,
+                              imageUrl: activeProducts[index].gambar!,
                               fit: BoxFit.contain,
                               placeholder: (context, url) =>
                                   Image.asset('assets/images/placeholder.png'),
@@ -128,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold)),
                                   Text(
-                                    "Rp ${NumberFormat.decimalPattern('id-ID').format(int.parse(apiService.data[index].price!))}",
+                                    "Rp ${NumberFormat.decimalPattern('id-ID').format(int.parse(activeProducts[index].price!))}",
                                     style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,

@@ -36,6 +36,8 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   intl: ^0.18.1
+  permission_handler: ^10.2.0
+  connectivity_wrapper: ^1.1.3
   shared_preferences: ^2.0.17
 
 dev_dependencies:
