@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "327387197279",
+    "project_id": "techtest-phase1",
+    "storage_bucket": "techtest-phase1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327387197279:android:4619773e9268b726b750ea",
+        "android_client_info": {
+          "package_name": "com.example.techtest_phase1_agnesty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEgVLmChJ_uJB9w-eEb4ZZfieITw1zJnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,11 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:techtest_phase1_agnesty/screens/home_screen.dart';
+
+import 'data_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+  static String routeName = "/splashscreen";
+
   const SplashScreen({super.key});
 
   @override
@@ -29,7 +32,7 @@ class SplashScreen extends StatelessWidget {
           ),
         ),
       ),
-      nextScreen: HomeScreen(),
+      nextScreen: DataScreen(),
       duration: 2000,
       splashIconSize: 350,
       splashTransition: SplashTransition.fadeTransition,

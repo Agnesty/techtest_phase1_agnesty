@@ -1,15 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+// import 'package:techtest_phase1_agnesty/dataUploader/data_uploader_screen.dart';
 import 'package:techtest_phase1_agnesty/screens/splash_screen.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 
-void main() {
+import 'bindings/binding.dart';
+import 'routes/route.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  InitialBinding().dependencies();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,7 +34,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      // home: DataUploaderScreen(),
+      initialRoute: SplashScreen.routeName,
+      getPages: Routes.pages(),
       builder: (buildContext, widget) {
         return ConnectivityWidgetWrapper(
           child: widget!,
