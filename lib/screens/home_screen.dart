@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:techtest_phase1_agnesty/models/data_model.dart';
+import 'package:techtest_phase1_agnesty/widget/bebas.dart';
 
 import '../controllers/menu_ctr.dart';
 
@@ -22,9 +23,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.blue[200],
         elevation: 0,
         centerTitle: true,
-        title: const Text(
-          "Home", style: TextStyle(color: Colors.black),
-        ),
+        title: const Bebas(),
         leading: Padding(
           padding: const EdgeInsets.only(left: 20),
           child: IconButton(
