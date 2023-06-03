@@ -32,7 +32,7 @@ class ResponseDataUploader extends GetxController {
         .where((path) =>
             path.startsWith('assets/json_files') && path.contains('.json'))
         .toList();
-    // print(papersInAsset);
+    
 
     List<ResponseModel> dataResponPapers = [];
 
