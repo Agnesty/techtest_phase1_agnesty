@@ -30,10 +30,10 @@ class DataModelCtr extends GetxController {
           .toList();
 
        // Filter produk dengan is_active == "0"
-      final filteredData = data.where((product) => product.isActive != "0").toList();
+      // final filteredData = data.where((product) => product.isActive != "0").toList();
 
-      allData.assignAll(filteredData);
-      // allData.assignAll(data);
+      // allData.assignAll(filteredData);
+      allData.assignAll(data);
 
       if (allData.isNotEmpty) {
         loadingStatus.value = LoadingStatus.completed;

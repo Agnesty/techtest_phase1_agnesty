@@ -63,9 +63,9 @@ class ResponseDataUploader extends GetxController {
           "id": data.id,
           "title": data.title,
           "gambar": data.gambar,
-          "is_active": data.isActive,
-          "create_time": data.createTime,
-          "update_time": data.updateTime,
+          // "is_active": data.isActive,
+          // "create_time": data.createTime,
+          // "update_time": data.updateTime,
           "price": data.price,
         });
       }

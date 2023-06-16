@@ -36,9 +36,9 @@ Future<void> getDataRespon() async {
 }
 
 //Filter data agar yang muncul hanya isActive = 1
-  List<DataModel> filterActiveProducts() {
-    return data.where((product) => product.isActive == "1").toList();
-  }
+  // List<DataModel> filterActiveProducts() {
+  //   return data.where((product) => product.isActive == "1").toList();
+  // }
   
 //Permission untuk izin di storage dan lokasi  
   Future<void> requestPermissions() async {

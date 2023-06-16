@@ -4,7 +4,7 @@ import 'package:techtest_phase1_agnesty/dataUploader/response_data_uploader.dart
 
 import '../services/loading_status.dart';
 
-
+// ignore: must_be_immutable
 class DataUploaderScreen extends StatelessWidget {
   DataUploaderScreen({Key? key}) : super(key: key);
 
