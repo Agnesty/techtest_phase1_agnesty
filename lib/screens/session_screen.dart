@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 // ignore: must_be_immutable
 class SessionManager extends StatefulWidget {
@@ -14,7 +15,8 @@ class SessionManager extends StatefulWidget {
       required this.onSessionExpired,
       required this.duration,
       required this.streamController,
-     Key? key}) : super(key: key);
+      Key? key})
+      : super(key: key);
 
   @override
   _SessionManagerState createState() => _SessionManagerState();
@@ -24,14 +26,23 @@ class _SessionManagerState extends State<SessionManager> {
   Timer? _timer;
   StreamController? streamController;
 
- void sessionStart() {
+  GetStorage storage = GetStorage();
+
+  void sessionStart(bool isMainMenu) {
+    // print("session start");
+
     closeTimer();
-    startTimer();
+    startTimer(isMainMenu);
   }
 
-  void startTimer() {
+  void startTimer(bool isMainMenu) {
     _timer = Timer.periodic(widget.duration, (timer) {
-      widget.onSessionExpired();
+      print("timer checking");
+
+      if (isMainMenu == true) {
+        widget.onSessionExpired();
+      }
+
       closeTimer();
     });
   }
@@ -51,7 +62,9 @@ class _SessionManagerState extends State<SessionManager> {
     if (streamController != null) {
       streamController!.stream.listen((event) {
         if (event != null && event['timer'] as bool) {
-          sessionStart();
+          storage.write('pauseCounter', false);
+          bool pauseCounter = storage.read('pauseCounter');
+          sessionStart(pauseCounter);
         } else {
           closeTimer();
         }
@@ -63,7 +76,9 @@ class _SessionManagerState extends State<SessionManager> {
   Widget build(BuildContext context) {
     return Listener(
       onPointerDown: (_) {
-        sessionStart();
+        bool pauseCounter = storage.read('pauseCounter');
+        // print("nilai pauseCounter Listener : $pauseCounter");
+        sessionStart(pauseCounter);
       },
       child: widget.child,
     );

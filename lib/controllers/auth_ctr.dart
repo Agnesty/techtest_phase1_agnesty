@@ -104,6 +104,11 @@ class AuthController extends GetxController {
     // Logout dari sistem otentikasi FirebaseAuth
     await firebaseAuth.signOut();
 
+    GetStorage storage = GetStorage();
+    storage.write('pauseCounter', false);
+    bool pauseCounter = storage.read('pauseCounter');
+    print("nilai pauseCounter di logout : $pauseCounter");
+
     // Menampilkan notifikasi logout berhasil
     Get.snackbar(
       'Logout',

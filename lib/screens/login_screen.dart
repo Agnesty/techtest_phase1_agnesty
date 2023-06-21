@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
 import 'package:techtest_phase1_agnesty/resources/constants.dart';
 import 'package:techtest_phase1_agnesty/services/session.dart';
@@ -12,7 +13,9 @@ import 'signup_screen.dart';
 // ignore: must_be_immutable
 class LoginScreen extends StatefulWidget {
   Session? session;
-  LoginScreen({this.session, super.key});
+  LoginScreen({
+    this.session, 
+    super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -23,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
+  Session sessionLogin = Session(enableLoginPage: true);
 
   @override
   void dispose() {
@@ -45,9 +49,15 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     formKey.currentState!.save();
     if (widget.session != null) {
-      widget.session!.enableLoginPage = true;
+      widget.session!.enableLoginPage;
     }
     // print("klik login");
+
+     GetStorage storage = GetStorage();
+     storage.write('pauseCounter', true);
+     bool pauseCounter = storage.read('pauseCounter');
+    print("nilai pauseCounter LOGIN : $pauseCounter");
+    
     try {
       String passEncrypt = _passwordController.text.trim();
       var encryptedPassword =
@@ -112,11 +122,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 28,
                   ),
                 ),
-                // const Text(
-                //   "Sign In",
-                //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                //   textAlign: TextAlign.start,
-                // ),
                 const SizedBox(
                   height: 15,
                 ),

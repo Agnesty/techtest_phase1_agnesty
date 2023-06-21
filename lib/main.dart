@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:techtest_phase1_agnesty/resources/constants.dart';
 import 'package:techtest_phase1_agnesty/routes/app_pages.dart';
 import 'package:techtest_phase1_agnesty/screens/login_screen.dart';
+// import 'package:techtest_phase1_agnesty/screens/session2.dart';
 import 'package:techtest_phase1_agnesty/services/session.dart';
 // import 'package:techtest_phase1_agnesty/dataUploader/data_uploader_screen.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
@@ -42,7 +43,9 @@ class _MyAppState extends State<MyApp> {
   StreamController streamController = StreamController();
 
   void redirectToLoginPage(BuildContext context) {
-    if (globalNavigatorKey.currentContext != null) {
+    GetStorage storage = GetStorage();
+    bool pCounter = storage.read('pauseCounter');
+    if (globalNavigatorKey.currentContext != null && pCounter == true) {
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -56,6 +59,11 @@ class _MyAppState extends State<MyApp> {
             ElevatedButton(
                 onPressed: () async {
                   await firebaseAuth.signOut();
+
+                  storage.write('pauseCounter', false);
+                  // bool pauseCounter = storage.read('pauseCounter');
+                  // print("nilai pauseCounter di logout : $pauseCounter");
+
                   Get.offAll(LoginScreen());
                 },
                 child: const Text("Logout"))
@@ -83,7 +91,7 @@ class _MyAppState extends State<MyApp> {
             redirectToLoginPage(globalNavigatorKey.currentContext!);
           }
         },
-        duration: const Duration(minutes: 1),
+        duration: const Duration(seconds: 10),
         streamController: streamController,
         child: GetMaterialApp(
           navigatorKey: globalNavigatorKey,
